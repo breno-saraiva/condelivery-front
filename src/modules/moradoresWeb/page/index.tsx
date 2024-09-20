@@ -3,50 +3,66 @@ import { ScrollArea, ScrollBar } from "@/shared/components/ui/scroll-area";
 import { pedidos } from "../mocks/pedidos";
 import { CardPedidos } from "../components/cardPedido";
 import { CardFinalizado } from "../components/cardFinalizados";
+import { Layout } from "@/shared/components/layout";
+import { useState } from "react";
+import { DialogConfirmaçãoEntrega } from "../components/dialogConfirmação";
 
 function DashMoradores() {
+  const [isOpenConfirmaçãoEntrega, setIsOpenConfirmaçãoEntrega] =
+    useState(false);
+
   return (
-    <div className="m-10 p-2 flex flex-col gap-6">
-      <div className="flex flex-col gap-4">
-        <h1 className="text-4xl font-bold">Pedidos em andamento</h1>
-        <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
-          <div className="flex w-max space-x-4 pb-4">
-            {pedidos.map((item) => (
-              <CardPedidos
-                cardID={item.id}
-                descricao={item.descricao}
-                localEntrega={item.localEntrega}
-                pedidoOrigem={item.pedidoOrigem}
-                previsaoChegada={item.previsaoChegada}
-                status={item.status}
-              />
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-        <Button className="w-1/6 bg-red-500 hover:bg-red-400">
-          Adicionar pedido
-        </Button>
+    <Layout>
+      <div className="mx-10 py-24 p-2 flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl font-bold">Pedidos em andamento</h1>
+          <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
+            <div className="flex w-max space-x-4 pb-4">
+              {pedidos.map((item) => (
+                <CardPedidos
+                  isOpenConfirmaçãoEntrega={isOpenConfirmaçãoEntrega}
+                  setIsOpenConfirmaçãoEntrega={setIsOpenConfirmaçãoEntrega}
+                  cardID={item.id}
+                  descricao={item.descricao}
+                  localEntrega={item.localEntrega}
+                  pedidoOrigem={item.pedidoOrigem}
+                  previsaoChegada={item.previsaoChegada}
+                  status={item.status}
+                />
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+          <Button type="button" className="w-1/6 bg-red-500 hover:bg-red-400">
+            Adicionar pedido
+          </Button>
+        </div>
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl font-bold">Pedidos Finalizados</h1>
+          <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
+            <div className="flex w-max space-x-4 pb-4">
+              {pedidos.map((item) => (
+                <CardFinalizado
+                  cardID={item.id}
+                  descricao={item.descricao}
+                  localEntrega={item.localEntrega}
+                  pedidoOrigem={item.pedidoOrigem}
+                  previsaoChegada={item.previsaoChegada}
+                  status={item.status}
+                />
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </div>
       </div>
-      <div className="flex flex-col gap-4">
-        <h1 className="text-4xl font-bold">Pedidos Finalizados</h1>
-        <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
-          <div className="flex w-max space-x-4 pb-4">
-            {pedidos.map((item) => (
-              <CardFinalizado
-                cardID={item.id}
-                descricao={item.descricao}
-                localEntrega={item.localEntrega}
-                pedidoOrigem={item.pedidoOrigem}
-                previsaoChegada={item.previsaoChegada}
-                status={item.status}
-              />
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-    </div>
+      {isOpenConfirmaçãoEntrega && (
+        <DialogConfirmaçãoEntrega
+          isOpen={isOpenConfirmaçãoEntrega}
+          onCLose={() => setIsOpenConfirmaçãoEntrega(false)}
+        />
+      )}
+    </Layout>
   );
 }
 

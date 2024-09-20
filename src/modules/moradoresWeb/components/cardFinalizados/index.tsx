@@ -29,7 +29,7 @@ const CardFinalizado = ({
       <Card className="w-[450px] border-green-300">
         <CardHeader>
           <CardTitle>
-            <h2 className="text-2xl">
+            <h2 className="text-xl">
               Pedido #<span>{cardID}</span>
             </h2>
           </CardTitle>

@@ -15,6 +15,8 @@ type CardProps = {
   status: string;
   previsaoChegada: string;
   localEntrega: string;
+  isOpenConfirmaçãoEntrega: boolean;
+  setIsOpenConfirmaçãoEntrega: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CardPedidos = ({
@@ -24,13 +26,14 @@ const CardPedidos = ({
   localEntrega,
   previsaoChegada,
   status,
+  setIsOpenConfirmaçãoEntrega,
 }: CardProps) => {
   return (
     <div>
       <Card className="w-[450px] border-yellow-300">
         <CardHeader>
           <CardTitle>
-            <h2 className="text-2xl">
+            <h2 className="text-xl">
               Pedido #<span>{cardID}</span>
             </h2>
           </CardTitle>
@@ -65,6 +68,7 @@ const CardPedidos = ({
           <Button
             className="decoration-yellow-400"
             type="button"
+            onClick={() => setIsOpenConfirmaçãoEntrega(true)}
             variant="link"
           >
             <h3 className="text-xl text-yellow-400">Confirma entrega</h3>
