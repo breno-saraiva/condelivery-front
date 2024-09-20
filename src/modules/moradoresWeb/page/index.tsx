@@ -6,10 +6,12 @@ import { CardFinalizado } from "../components/cardFinalizados";
 import { Layout } from "@/shared/components/layout";
 import { useState } from "react";
 import { DialogConfirmaçãoEntrega } from "../components/dialogConfirmação";
+import { DialogFormPedido } from "../components/dialogFormPedido";
 
 function DashMoradores() {
   const [isOpenConfirmaçãoEntrega, setIsOpenConfirmaçãoEntrega] =
     useState(false);
+  const [isOpenFormEntrega, setisOpenFormEntrega] = useState(false);
 
   return (
     <Layout>
@@ -33,7 +35,11 @@ function DashMoradores() {
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
-          <Button type="button" className="w-1/6 bg-red-500 hover:bg-red-400">
+          <Button
+            onClick={() => setisOpenFormEntrega(true)}
+            type="button"
+            className="w-1/6 bg-red-500 hover:bg-red-400"
+          >
             Adicionar pedido
           </Button>
         </div>
@@ -60,6 +66,12 @@ function DashMoradores() {
         <DialogConfirmaçãoEntrega
           isOpen={isOpenConfirmaçãoEntrega}
           onCLose={() => setIsOpenConfirmaçãoEntrega(false)}
+        />
+      )}
+      {isOpenFormEntrega && (
+        <DialogFormPedido
+          isOpen={isOpenFormEntrega}
+          onCLose={() => setisOpenFormEntrega(false)}
         />
       )}
     </Layout>
