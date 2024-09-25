@@ -7,7 +7,7 @@ type Prop = {
 };
 function Layout({ children }: Prop) {
   return (
-    <div className="w-full h-screen relative">
+    <div className="w-full relative bg-[#f5f5dc]">
       <header className="py-5 px-10 flex items-center justify-between bg-red-500 absolute top-0 w-full">
         <div>
           <img src={logo} alt="logomarca" />
