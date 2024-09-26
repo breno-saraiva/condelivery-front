@@ -14,7 +14,7 @@ function DashMoradores() {
   const [isOpenFormEntrega, setisOpenFormEntrega] = useState(false);
 
   return (
-    <Layout>
+    <Layout usuario="Jamal">
       <div className="mx-10 py-24 px-2 flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <h1 className="text-xl font-bold">Pedidos em andamento</h1>
