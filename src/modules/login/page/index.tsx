@@ -7,7 +7,7 @@ import { Button } from "@/shared/components/ui/button";
 function Login() {
   return (
     <Layout>
-      <div className="mx-10 pt-28">
+      <div className="pt-32">
         <div className="flex flex-col justify-center items-center gap-4">
           <img src={logo} />
           <div className="flex flex-col justify-start items-start gap-2">
