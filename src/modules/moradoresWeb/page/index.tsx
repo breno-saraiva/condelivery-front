@@ -15,10 +15,10 @@ function DashMoradores() {
 
   return (
     <Layout>
-      <div className="mx-10 py-24 p-2 flex flex-col gap-6">
+      <div className="mx-10 py-24 px-2 flex flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold">Pedidos em andamento</h1>
-          <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
+          <h1 className="text-xl font-bold">Pedidos em andamento</h1>
+          <ScrollArea className="w-full whitespace-nowrap rounded-xl">
             <div className="flex w-max space-x-4 pb-4">
               {pedidos.map((item) => (
                 <CardPedidos
@@ -44,7 +44,7 @@ function DashMoradores() {
           </Button>
         </div>
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold">Pedidos Finalizados</h1>
+          <h1 className="text-xl font-bold">Pedidos Finalizados</h1>
           <ScrollArea className="w-full whitespace-nowrap rounded-xl ">
             <div className="flex w-max space-x-4 pb-4">
               {pedidos.map((item) => (

@@ -7,8 +7,8 @@ type Prop = {
 };
 function Layout({ children }: Prop) {
   return (
-    <div className="w-full relative bg-[#f5f5dc]">
-      <header className="py-5 px-10 flex items-center justify-between bg-red-500 absolute top-0 w-full">
+    <div className="w-full h-screen relative bg-[#f5f5dc]">
+      <div className="py-5 px-10 flex items-center justify-between bg-red-500 absolute top-0 w-full">
         <div>
           <img src={logo} alt="logomarca" />
         </div>
@@ -17,9 +17,9 @@ function Layout({ children }: Prop) {
             Seja bem vindo, <span>Jamal</span>
           </h1>
         </div>
-      </header>
-      <main className="flex-1">{children}</main>
-      <footer className="py-5 px-10 flex items-center justify-between bg-red-500 absolute bottom-0 w-full">
+      </div>
+      <div className="flex-1 bg-[#f5f5dc]">{children}</div>
+      <div className="py-5 px-10 flex items-center justify-between bg-red-500 fixed bottom-0 w-full">
         <div>
           <img src={logo} alt="logomarca" />
         </div>
@@ -30,7 +30,7 @@ function Layout({ children }: Prop) {
           <FaInstagram className="text-4xl text-white" />
           <FaWhatsapp className="text-4xl text-white" />
         </div>
-      </footer>
+      </div>
     </div>
   );
 }

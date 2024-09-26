@@ -26,10 +26,10 @@ const CardFinalizado = ({
 }: CardProps) => {
   return (
     <div>
-      <Card className="w-[450px] border-green-300">
+      <Card className="w-[400px] border-green-300">
         <CardHeader>
           <CardTitle>
-            <h2 className="text-xl">
+            <h2 className="text-lg">
               Pedido #<span>{cardID}</span>
             </h2>
           </CardTitle>
@@ -40,7 +40,7 @@ const CardFinalizado = ({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col gap-2">
+          <div className="-my-4 flex flex-col gap-2">
             <div>
               <h5 className="font-semibold">{descricao}</h5>
             </div>

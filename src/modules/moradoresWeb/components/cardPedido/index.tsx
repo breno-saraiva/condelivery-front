@@ -30,7 +30,7 @@ const CardPedidos = ({
 }: CardProps) => {
   return (
     <div>
-      <Card className="w-[450px] border-yellow-300">
+      <Card className="w-[400px] border-yellow-300">
         <CardHeader>
           <CardTitle>
             <h2 className="text-xl">
@@ -44,7 +44,7 @@ const CardPedidos = ({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col gap-2">
+          <div className="-my-4 flex flex-col gap-2">
             <div>
               <h5 className="font-semibold">{descricao}</h5>
             </div>
