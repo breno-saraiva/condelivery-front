@@ -3,6 +3,7 @@ import logo from "@/shared/assets/logo-red.png";
 import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
 import { Button } from "@/shared/components/ui/button";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -26,9 +27,11 @@ function Login() {
             <Button className="w-60 text-white bg-red-500 hover:bg-red-400">
               Entrar
             </Button>
-            <Button className="w-60" variant="outline">
-              Cadastre-se
-            </Button>
+            <Link to="/cadastro-condominio">
+              <Button className="w-60" variant="outline">
+                Cadastre-se
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
