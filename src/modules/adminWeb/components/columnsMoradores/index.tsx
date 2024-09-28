@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { moradores } from "../../types/moradores";
-import { cnpjMask } from "@/shared/utils/masks";
+// import { cpfMask } from "@/shared/utils/masks";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/components/ui/badge";
 
@@ -12,9 +12,9 @@ const columnsMoradores: ColumnDef<moradores>[] = [
   {
     accessorKey: "cpf",
     header: "CPF",
-    cell: ({ row }) => {
-      return cnpjMask(row.getValue<string>("cnpj"));
-    },
+    // cell: ({ row }) => {
+    //   return cpfMask(row.getValue<string>("cnpj"));
+    // },
   },
   {
     accessorKey: "telefone",

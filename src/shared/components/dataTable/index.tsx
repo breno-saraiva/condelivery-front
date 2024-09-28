@@ -24,7 +24,6 @@ import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import { IPagination, Pagination } from "./pagination";
 import { DropdownMenu } from "@/shared/components/dropdownMenu";
 import { ActionButton } from "@/shared/components/types/ActionButton";
-import notFoundImg from "@assets/imgs/notFound.png";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -63,7 +62,7 @@ export function DataTable<TData, TValue>({
     <>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-zinc-200">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {actionButtons.length > 0 && (
@@ -157,12 +156,9 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <div className="flex flex-col justify-center items-end font-semibold h-96 bg-white">
-                  <img
-                    className="w-1/3"
-                    src={notFoundImg}
-                    alt="Nenhum dado encontrado"
-                  />
-                  Oops, parece que nenhum dado foi encontrado.
+                  <h1 className="w-1/3 font-bold text-[#F48C06]">
+                    Nenhum Dado foi encontrado
+                  </h1>
                 </div>
               </TableRow>
             )}
