@@ -11,11 +11,12 @@ import { moradores } from "../types/moradores";
 import { MdModeEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { DialogEditMorador } from "../components/dialogEditMorador";
+import { DialogExcludeMorador } from "../components/dialogExcludeMorador";
 
 function AdministradorWebPage() {
   const [openDialogAddMorador, setOpenDialogAddMorador] = useState(false);
-  const [openDialogExclude, setOpenDialogExclude] = useState(false);
   const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
+  const [openDialogExclude, setOpenDialogExclude] = useState(false);
   const [moradorSelected, setMoradorSelected] = useState<moradores>();
 
   const { handleNextPage, handlePreviousPage, handleSelectPerPage, pageInfo } =
@@ -100,7 +101,14 @@ function AdministradorWebPage() {
           onCLose={() => setOpenDialogEditMorador(false)}
         />
       )}
-      {openDialogExclude && <div></div>}
+      {openDialogExclude && (
+        <DialogExcludeMorador
+          isOpen={openDialogExclude}
+          onCLose={() => setOpenDialogExclude(false)}
+          moradorSelected={moradorSelected}
+          setOpenDialogExclude={setOpenDialogExclude}
+        />
+      )}
     </Layout>
   );
 }
