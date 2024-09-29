@@ -7,12 +7,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
-import { moradores } from "../../types/moradores";
+import { deleteMoradoresService } from "../../service/deleteMorador/deleteMorador.service";
+import { ListMoradores } from "../../service/listMoradores/getMoradores.dto";
 
 type DiaLogProp = {
   isOpen: boolean;
   onCLose: () => void;
-  moradorSelected?: moradores;
+  moradorSelected: ListMoradores;
   setOpenDialogExclude: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -22,6 +23,13 @@ const DialogExcludeMorador = ({
   moradorSelected,
   setOpenDialogExclude,
 }: DiaLogProp) => {
+  async function DeleteMorador(_id: string) {
+    try {
+      await deleteMoradoresService.execute(_id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Dialog open={isOpen} onOpenChange={onCLose}>
       <DialogContent>
@@ -46,7 +54,13 @@ const DialogExcludeMorador = ({
                 Voltar
               </Button>
             </DialogClose>
-            <Button variant="destructive">Confirmar</Button>
+            <Button
+              type="button"
+              onClick={() => DeleteMorador(moradorSelected._id)}
+              variant="destructive"
+            >
+              Confirmar
+            </Button>
           </div>
         </div>
       </DialogContent>

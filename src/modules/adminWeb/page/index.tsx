@@ -6,7 +6,6 @@ import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
 import { DialogAddMorador } from "../components/dialogAddMorador";
 import { ActionButton } from "@/shared/components/types/ActionButton";
-import { moradores } from "../types/moradores";
 import { MdModeEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { DialogEditMorador } from "../components/dialogEditMorador";
@@ -18,7 +17,7 @@ function AdministradorWebPage() {
   const [openDialogAddMorador, setOpenDialogAddMorador] = useState(false);
   const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
   const [openDialogExclude, setOpenDialogExclude] = useState(false);
-  const [moradorSelected, setMoradorSelected] = useState<moradores>();
+  const [moradorSelected, setMoradorSelected] = useState<ListMoradores>();
   const [listMoradores, setListMoradores] = useState<ListMoradores[]>([]);
 
   const { handleNextPage, handlePreviousPage, handleSelectPerPage, pageInfo } =
@@ -30,17 +29,19 @@ function AdministradorWebPage() {
     {
       label: "Editar Empresa",
       icon: <MdModeEdit />,
-      onClick: (row: moradores) => {
+      onClick: (row: ListMoradores) => {
         setMoradorSelected((prev) => {
           return {
             ...prev,
-            id: row.id,
+            _id: row._id,
             nome: row.nome,
             cpf: row.cpf,
-            telefone: row.telefone,
+            celular: row.celular,
             email: row.email,
-            date_nasc: row.date_nasc,
-            logradouro: row.logradouro,
+            data_nascimento: row.data_nascimento,
+            unidade: row.unidade,
+            eh_entregador: row.eh_entregador,
+            senha: row.senha,
           };
         });
         setOpenDialogEditMorador(true);
@@ -49,17 +50,19 @@ function AdministradorWebPage() {
     {
       label: "Excluir Empresa",
       icon: <FaTrashAlt className="text-red-500" />,
-      onClick: (row: moradores) => {
+      onClick: (row: ListMoradores) => {
         setMoradorSelected((prev) => {
           return {
             ...prev,
-            id: row.id,
+            _id: row._id,
             nome: row.nome,
             cpf: row.cpf,
-            telefone: row.telefone,
+            celular: row.celular,
             email: row.email,
-            date_nasc: row.date_nasc,
-            logradouro: row.logradouro,
+            data_nascimento: row.data_nascimento,
+            unidade: row.unidade,
+            eh_entregador: row.eh_entregador,
+            senha: row.senha,
           };
         });
         setOpenDialogExclude(true);
@@ -78,7 +81,7 @@ function AdministradorWebPage() {
 
   useEffect(() => {
     getMoradores();
-  }, []);
+  }, [openDialogAddMorador, openDialogEditMorador, openDialogExclude]);
 
   return (
     <Layout usuario={usua}>
