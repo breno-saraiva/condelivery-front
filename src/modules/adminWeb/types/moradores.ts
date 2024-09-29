@@ -6,7 +6,7 @@ type moradores = {
   email: string;
   date_nasc: string;
   logradouro: string;
-  morador_tipo: string;
+  morador_tipo?: string;
 };
 
 export type { moradores };
