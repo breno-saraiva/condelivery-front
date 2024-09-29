@@ -19,6 +19,7 @@ import {
 } from "@/shared/components/ui/form";
 import { Label } from "@/shared/components/ui/label";
 import { Input } from "@/shared/components/ui/input";
+import { Button } from "@/shared/components/ui/button";
 
 type DiaLogProp = {
   isOpen: boolean;
@@ -37,34 +38,41 @@ const DialogFormPedido = ({ isOpen, onCLose }: DiaLogProp) => {
         <DialogHeader>
           <DialogTitle>Adicionar Pedido</DialogTitle>
           <DialogDescription>
-            <Form {...form}>
-              <form onSubmit={(data) => console.log(data)}>
-                <div>
-                  <div>
-                    <div>
-                      <Label>Plataforma</Label>
-                    </div>
-                    <FormField
-                      control={form.control}
-                      name="prataform"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input
-                              placeholder="Digite o nome da empresa"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-              </form>
-            </Form>
+            preencha o formulário com seu pedido
           </DialogDescription>
         </DialogHeader>
+        <Form {...form}>
+          <form onSubmit={(data) => console.log(data)}>
+            <div>
+              <div>
+                <div>
+                  <Label>Plataforma</Label>
+                </div>
+                <FormField
+                  control={form.control}
+                  name="prataform"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Digite o nome da empresa"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <Button
+              className="bg-red-500 hover:bg-red-400 col-span-2 col-start-3"
+              type="submit"
+            >
+              Criar
+            </Button>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
