@@ -6,6 +6,7 @@ type Prop = {
   children: React.ReactNode;
   usuario?: string;
 };
+
 function Layout({ children, usuario }: Prop) {
   return (
     <div className="w-full h-screen relative bg-[#f5f5dc]">
