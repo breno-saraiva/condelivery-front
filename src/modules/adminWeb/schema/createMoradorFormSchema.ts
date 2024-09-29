@@ -7,6 +7,7 @@ const createFormSchemaMorador = z.object({
   email: z.string(),
   date_nasc: z.string(),
   unidade: z.string(),
+  senha: z.string(),
 });
 
 export { createFormSchemaMorador };

@@ -1,10 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { moradores } from "../../types/moradores";
-// import { cpfMask } from "@/shared/utils/masks";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/components/ui/badge";
+import { ListMoradores } from "../../service/listMoradores/getMoradores.dto";
 
-const columnsMoradores: ColumnDef<moradores>[] = [
+const columnsMoradores: ColumnDef<ListMoradores>[] = [
   {
     accessorKey: "nome",
     header: "Nome",
@@ -12,12 +11,9 @@ const columnsMoradores: ColumnDef<moradores>[] = [
   {
     accessorKey: "cpf",
     header: "CPF",
-    // cell: ({ row }) => {
-    //   return cpfMask(row.getValue<string>("cnpj"));
-    // },
   },
   {
-    accessorKey: "telefone",
+    accessorKey: "celular",
     header: "Telefone",
   },
   {
@@ -25,27 +21,29 @@ const columnsMoradores: ColumnDef<moradores>[] = [
     header: "E-mail",
   },
   {
-    accessorKey: "date_nasc",
+    accessorKey: "data_nascimento",
     header: "Data de Nascimento",
   },
   {
-    accessorKey: "logradouro",
+    accessorKey: "unidade",
     header: "Apto",
   },
   {
-    accessorKey: "morador_tipo",
+    accessorKey: "eh_entregador",
     header: "Tipo de Morador",
     cell: ({ row }) => {
-      const status = row.getValue<string>("morador_tipo");
+      const status = row.getValue<boolean>("morador_tipo");
       return (
         <div className="w-full flex items-center justify-center">
           <Badge
             className={cn(
               "w-32 flex justify-center items-center",
-              `${status === "morador" ? "bg-emerald-500" : "bg-orange-400"}`
+              `${!status ? "bg-emerald-500" : "bg-orange-400"}`
             )}
           >
-            <span className="text-white">{status}</span>
+            <span className="text-white">
+              {!status ? "morador" : "entregador"}
+            </span>
           </Badge>
         </div>
       );

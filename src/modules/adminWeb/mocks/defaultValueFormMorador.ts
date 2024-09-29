@@ -8,6 +8,7 @@ const defaultValueFormAddMorador: z.infer<typeof createFormSchemaMorador> = {
   email: "",
   date_nasc: "",
   unidade: "",
+  senha: "",
 };
 
 export { defaultValueFormAddMorador };

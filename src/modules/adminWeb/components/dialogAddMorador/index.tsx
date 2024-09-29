@@ -20,6 +20,9 @@ import {
 import { Label } from "@/shared/components/ui/label";
 import { Input } from "@/shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
+import { createMorador } from "../../service/createMorador/createMorador.service";
+import { Switch } from "@/shared/components/ui/switch";
+import { useState } from "react";
 
 type DiaLogProp = {
   isOpen: boolean;
@@ -32,6 +35,27 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
     defaultValues: defaultValueFormAddMorador,
   });
 
+  const [statusMorador, setStatusMorador] = useState(false);
+
+  async function onSubmit(data: z.infer<typeof createFormSchemaMorador>) {
+    const params = {
+      nome: data.nome,
+      cpf: data.cpf,
+      celular: data.telefone,
+      email: data.email,
+      data_nascimento: data.date_nasc,
+      unidade: data.unidade,
+      eh_entregador: statusMorador,
+      senha: data.senha,
+    };
+    try {
+      await createMorador.execute(params);
+      window.alert("cadastro realizado");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onCLose}>
       <DialogContent>
@@ -42,8 +66,15 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={(data) => console.log(data)}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-6 gap-4">
+              <div className="col-span-6">
+                <Switch
+                  className="data-[state=checked]:bg-[#F48C06] data-[state=unchecked]:bg-green-500"
+                  checked={statusMorador}
+                  onCheckedChange={(status) => setStatusMorador(status)}
+                />
+              </div>
               <div className="col-span-3">
                 <div>
                   <Label>nome</Label>
@@ -161,8 +192,28 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
                   )}
                 />
               </div>
+              <div className="col-span-3">
+                <div>
+                  <Label>Senha</Label>
+                </div>
+                <FormField
+                  control={form.control}
+                  name="senha"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Digite o nome do Morador"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <Button
-                className="bg-red-500 hover:bg-red-400 col-span-2 col-start-5"
+                className="bg-red-500 hover:bg-red-400 col-span-2 row-start-6 col-start-5"
                 type="submit"
               >
                 Criar
