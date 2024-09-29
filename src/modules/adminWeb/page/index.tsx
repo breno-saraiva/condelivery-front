@@ -10,9 +10,12 @@ import { ActionButton } from "@/shared/components/types/ActionButton";
 import { moradores } from "../types/moradores";
 import { MdModeEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
+import { DialogEditMorador } from "../components/dialogEditMorador";
 
 function AdministradorWebPage() {
   const [openDialogAddMorador, setOpenDialogAddMorador] = useState(false);
+  const [openDialogExclude, setOpenDialogExclude] = useState(false);
+  const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
   const [moradorSelected, setMoradorSelected] = useState<moradores>();
 
   const { handleNextPage, handlePreviousPage, handleSelectPerPage, pageInfo } =
@@ -35,7 +38,7 @@ function AdministradorWebPage() {
             logradouro: row.logradouro,
           };
         });
-        // setOpenDialogEdit(true);
+        setOpenDialogEditMorador(true);
       },
     },
     {
@@ -54,7 +57,7 @@ function AdministradorWebPage() {
             logradouro: row.logradouro,
           };
         });
-        // setOpenDialogEdit(true);
+        setOpenDialogExclude(true);
       },
     },
   ];
@@ -90,6 +93,14 @@ function AdministradorWebPage() {
           onCLose={() => setOpenDialogAddMorador(false)}
         />
       )}
+      {openDialogEditMorador && (
+        <DialogEditMorador
+          moradorSelected={moradorSelected}
+          isOpen={openDialogEditMorador}
+          onCLose={() => setOpenDialogEditMorador(false)}
+        />
+      )}
+      {openDialogExclude && <div></div>}
     </Layout>
   );
 }
