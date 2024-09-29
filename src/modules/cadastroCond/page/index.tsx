@@ -142,7 +142,7 @@ function CadastroCondPage() {
                   <Label>Número</Label>
                   <FormField
                     control={form.control}
-                    name="celular_adm"
+                    name="numero"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -218,7 +218,7 @@ function CadastroCondPage() {
                   <Label>Estado</Label>
                   <FormField
                     control={form.control}
-                    name="numero"
+                    name="estado"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -311,6 +311,25 @@ function CadastroCondPage() {
                           <Input
                             className="bg-white"
                             placeholder="Digite o telefone do responsável"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />{" "}
+                </div>
+                <div className="row-start-2 col-span-4">
+                  <Label>Senha de Acesso</Label>
+                  <FormField
+                    control={form.control}
+                    name="senha_adm"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="bg-white"
+                            placeholder="Digite a Senha de acesso"
                             {...field}
                           />
                         </FormControl>
