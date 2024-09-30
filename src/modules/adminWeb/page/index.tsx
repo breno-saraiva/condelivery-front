@@ -17,7 +17,19 @@ function AdministradorWebPage() {
   const [openDialogAddMorador, setOpenDialogAddMorador] = useState(false);
   const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
   const [openDialogExclude, setOpenDialogExclude] = useState(false);
-  const [moradorSelected, setMoradorSelected] = useState<ListMoradores>();
+  const [moradorSelected, setMoradorSelected] = useState<ListMoradores>({
+    _id: "",
+    nome: "",
+    cpf: "",
+    celular: "",
+    email: "",
+    data_nascimento: "",
+    unidade: "",
+    eh_entregador: true,
+    senha: "",
+  });
+  const [statusMorador, setStatusMorador] = useState(false);
+
   const [listMoradores, setListMoradores] = useState<ListMoradores[]>([]);
 
   const { handleNextPage, handlePreviousPage, handleSelectPerPage, pageInfo } =
@@ -44,6 +56,7 @@ function AdministradorWebPage() {
             senha: row.senha,
           };
         });
+        setStatusMorador(moradorSelected.eh_entregador);
         setOpenDialogEditMorador(true);
       },
     },
@@ -114,6 +127,8 @@ function AdministradorWebPage() {
       )}
       {openDialogEditMorador && (
         <DialogEditMorador
+          statusMorador={statusMorador}
+          setStatusMorador={setStatusMorador}
           moradorSelected={moradorSelected}
           isOpen={openDialogEditMorador}
           onCLose={() => setOpenDialogEditMorador(false)}
