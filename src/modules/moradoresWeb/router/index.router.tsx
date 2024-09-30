@@ -3,7 +3,7 @@ import { DashMoradores } from "../page";
 
 const MoradorRouter: RouteObject[] = [
   {
-    path: "/dashboardMorador",
+    path: "/dashboard-morador",
     element: <DashMoradores />,
   },
 ];

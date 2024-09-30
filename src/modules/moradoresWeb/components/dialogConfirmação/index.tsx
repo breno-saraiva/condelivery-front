@@ -7,13 +7,34 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
+import { editPedidoService } from "../../service/editStatusPedido/editStatus.service";
 
 type DiaLogProp = {
   isOpen: boolean;
   onCLose: () => void;
+  cardID: string;
+  setIsOpenConfirmaçãoEntrega: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const DialogConfirmaçãoEntrega = ({ isOpen, onCLose }: DiaLogProp) => {
+const DialogConfirmaçãoEntrega = ({
+  isOpen,
+  onCLose,
+  cardID,
+  setIsOpenConfirmaçãoEntrega,
+}: DiaLogProp) => {
+  async function editStatus() {
+    const params = {
+      _id: cardID,
+      status: "entregue",
+    };
+    try {
+      await editPedidoService.execute(params);
+      setIsOpenConfirmaçãoEntrega(false);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Dialog open={isOpen} onOpenChange={onCLose}>
       <DialogContent className="p-8">
@@ -34,7 +55,13 @@ const DialogConfirmaçãoEntrega = ({ isOpen, onCLose }: DiaLogProp) => {
                 Voltar
               </Button>
             </DialogClose>
-            <Button variant="destructive">Confirmar</Button>
+            <Button
+              type="button"
+              onClick={() => editStatus()}
+              variant="destructive"
+            >
+              Confirmar
+            </Button>
           </div>
         </div>
       </DialogContent>

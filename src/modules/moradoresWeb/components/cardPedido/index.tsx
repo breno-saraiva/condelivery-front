@@ -7,16 +7,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import { DialogConfirmaçãoEntrega } from "../dialogConfirmação";
+import { useState } from "react";
 
 type CardProps = {
-  cardID: number;
+  cardID: string;
   pedidoOrigem: string;
   descricao: string;
   status: string;
   previsaoChegada: string;
   localEntrega: string;
-  isOpenConfirmaçãoEntrega: boolean;
-  setIsOpenConfirmaçãoEntrega: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CardPedidos = ({
@@ -26,8 +26,10 @@ const CardPedidos = ({
   localEntrega,
   previsaoChegada,
   status,
-  setIsOpenConfirmaçãoEntrega,
 }: CardProps) => {
+  const [isOpenConfirmaçãoEntrega, setIsOpenConfirmaçãoEntrega] =
+    useState(false);
+
   return (
     <div>
       <Card className="w-[400px] border-yellow-300">
@@ -48,15 +50,13 @@ const CardPedidos = ({
             <div>
               <h5 className="font-semibold">{descricao}</h5>
             </div>
-            <div className="flex justify-between">
-              <div className="flex gap-1">
-                <h5 className="font-semibold">Status: </h5>
-                <span>{status}</span>
-              </div>
-              <div className="flex gap-1">
-                <h5 className="font-semibold">previsão de chegada:</h5>
-                <span>{previsaoChegada}</span>
-              </div>
+            <div className="flex gap-1">
+              <h5 className="font-semibold">Status: </h5>
+              <span>{status}</span>
+            </div>
+            <div className="flex gap-1">
+              <h5 className="font-semibold">previsão de chegada:</h5>
+              <span>{previsaoChegada}</span>
             </div>
             <div className="flex gap-2">
               <h5 className="font-semibold">Local de entrega:</h5>
@@ -75,6 +75,14 @@ const CardPedidos = ({
           </Button>
         </CardFooter>
       </Card>
+      {isOpenConfirmaçãoEntrega && (
+        <DialogConfirmaçãoEntrega
+          setIsOpenConfirmaçãoEntrega={setIsOpenConfirmaçãoEntrega}
+          cardID={cardID}
+          isOpen={isOpenConfirmaçãoEntrega}
+          onCLose={() => setIsOpenConfirmaçãoEntrega(false)}
+        />
+      )}
     </div>
   );
 };

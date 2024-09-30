@@ -8,7 +8,7 @@ import {
 } from "@/shared/components/ui/card";
 
 type CardProps = {
-  cardID: number;
+  cardID: string;
   pedidoOrigem: string;
   descricao: string;
   status: string;
@@ -44,15 +44,13 @@ const CardFinalizado = ({
             <div>
               <h5 className="font-semibold">{descricao}</h5>
             </div>
-            <div className="flex justify-between">
-              <div className="flex gap-1">
-                <h5 className="font-semibold">Status: </h5>
-                <span>{status}</span>
-              </div>
-              <div className="flex gap-1">
-                <h5 className="font-semibold">previsão de chegada:</h5>
-                <span>{previsaoChegada}</span>
-              </div>
+            <div className="flex gap-1">
+              <h5 className="font-semibold">Status: </h5>
+              <span>{status}</span>
+            </div>
+            <div className="flex gap-1">
+              <h5 className="font-semibold">previsão de chegada:</h5>
+              <span>{previsaoChegada}</span>
             </div>
             <div className="flex gap-2">
               <h5 className="font-semibold">Local de entrega:</h5>
