@@ -78,7 +78,7 @@ function Login() {
                         <Input
                           type="password"
                           className="bg-white w-64"
-                          placeholder="Digite o CNPJ..."
+                          placeholder="Digite sua senha"
                           {...field}
                         />
                       </FormControl>
