@@ -2,7 +2,7 @@ import { Layout } from "@/shared/components/layout";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createCondominioSchema } from "../schema/createCondominioSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +22,7 @@ function CadastroCondPage() {
     resolver: zodResolver(createCondominioSchema),
     defaultValues: defaultValueFormCreateCondominio,
   });
-
+  const navigate = useNavigate();
   async function onSubmit(data: z.infer<typeof createCondominioSchema>) {
     const params = {
       nome: data.nome,
@@ -43,6 +43,7 @@ function CadastroCondPage() {
     try {
       await createCondominio.execute(params);
       window.alert("cadastro realizado");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
