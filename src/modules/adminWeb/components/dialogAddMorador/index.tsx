@@ -68,8 +68,8 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-6 gap-4">
-              <div className="col-span-6">
-                <span>Tipo morador: </span>
+              <div className="col-span-6 flex items-center gap-4">
+                <span className="font-semibold">Tipo morador: </span>
                 <Switch
                   className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-[#F48C06]"
                   checked={statusMorador}
