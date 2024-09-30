@@ -4,14 +4,11 @@ import { CardPedidos } from "../components/cardPedido";
 import { CardFinalizado } from "../components/cardFinalizados";
 import { Layout } from "@/shared/components/layout";
 import { useEffect, useState } from "react";
-import { DialogConfirmaçãoEntrega } from "../components/dialogConfirmação";
 import { DialogFormPedido } from "../components/dialogFormPedido";
 import { getPedidosMoradoresService } from "../service/getPedidosMorador/listPedidosMorador.service";
 import { PedidosMorador } from "../service/getPedidosMorador/ListPedidosMorador.Dto";
 
 function DashMoradores() {
-  const [isOpenConfirmaçãoEntrega, setIsOpenConfirmaçãoEntrega] =
-    useState(false);
   const [isOpenFormEntrega, setisOpenFormEntrega] = useState(false);
   const [listPedidosEntregues, setListPedidosEntregues] = useState<
     PedidosMorador[]
@@ -36,7 +33,8 @@ function DashMoradores() {
 
   useEffect(() => {
     loadPedidosMorador();
-  }, [isOpenConfirmaçãoEntrega]);
+  }, []);
+
   return (
     <Layout usuario="Jamal">
       <div className="mx-10 py-24 px-2 flex flex-col gap-6">
@@ -46,8 +44,6 @@ function DashMoradores() {
             <div className="flex w-max space-x-4 pb-4">
               {listPedidosAndamento.map((item) => (
                 <CardPedidos
-                  isOpenConfirmaçãoEntrega={isOpenConfirmaçãoEntrega}
-                  setIsOpenConfirmaçãoEntrega={setIsOpenConfirmaçãoEntrega}
                   cardID={item._id}
                   descricao={item.descricao}
                   localEntrega={item.local_entrega}
@@ -86,14 +82,10 @@ function DashMoradores() {
           </ScrollArea>
         </div>
       </div>
-      {isOpenConfirmaçãoEntrega && (
-        <DialogConfirmaçãoEntrega
-          isOpen={isOpenConfirmaçãoEntrega}
-          onCLose={() => setIsOpenConfirmaçãoEntrega(false)}
-        />
-      )}
+
       {isOpenFormEntrega && (
         <DialogFormPedido
+          setisOpenFormEntrega={setisOpenFormEntrega}
           isOpen={isOpenFormEntrega}
           onCLose={() => setisOpenFormEntrega(false)}
         />
