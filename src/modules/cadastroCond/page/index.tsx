@@ -72,7 +72,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o nome do responsável"
+                            placeholder="Digite o nome do responsavel"
                             {...field}
                           />
                         </FormControl>
@@ -148,7 +148,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o telefone do responsável"
+                            placeholder="Digite o telefone do Condomínio"
                             {...field}
                           />
                         </FormControl>
@@ -167,7 +167,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o telefone do responsável"
+                            placeholder="Digite o complemento"
                             {...field}
                           />
                         </FormControl>
@@ -224,7 +224,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o estádo"
+                            placeholder="Digite o estado"
                             {...field}
                           />
                         </FormControl>
@@ -253,7 +253,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o telefone do responsável"
+                            placeholder="Digite o nome do responsável"
                             {...field}
                           />
                         </FormControl>
@@ -272,7 +272,7 @@ function CadastroCondPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="Digite o telefone do responsável"
+                            placeholder="Digite o cpf do responsável"
                             {...field}
                           />
                         </FormControl>
