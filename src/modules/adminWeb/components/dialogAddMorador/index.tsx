@@ -69,11 +69,13 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-6 gap-4">
               <div className="col-span-6">
+                <span>Tipo morador: </span>
                 <Switch
-                  className="data-[state=checked]:bg-[#F48C06] data-[state=unchecked]:bg-green-500"
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-[#F48C06]"
                   checked={statusMorador}
                   onCheckedChange={(status) => setStatusMorador(status)}
                 />
+                {statusMorador ? <span>morador</span> : <span>entregador</span>}
               </div>
               <div className="col-span-3">
                 <div>
@@ -203,6 +205,7 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
                     <FormItem>
                       <FormControl>
                         <Input
+                          type="password"
                           placeholder="Digite o nome do Morador"
                           {...field}
                         />
