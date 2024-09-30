@@ -17,6 +17,8 @@ function DashMoradores() {
     PedidosMorador[]
   >([]);
 
+  const nome_usua = String(localStorage.getItem("@nome_usua"));
+
   async function loadPedidosMorador() {
     try {
       const response = await getPedidosMoradoresService.execute();
@@ -36,7 +38,7 @@ function DashMoradores() {
   }, []);
 
   return (
-    <Layout usuario="Jamal">
+    <Layout usuario={nome_usua}>
       <div className="mx-10 py-24 px-2 flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <h1 className="text-xl font-bold">Pedidos em andamento</h1>
