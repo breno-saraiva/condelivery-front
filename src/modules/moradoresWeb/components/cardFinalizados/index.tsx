@@ -8,7 +8,7 @@ import {
 } from "@/shared/components/ui/card";
 
 type CardProps = {
-  cardID: number;
+  cardID: string;
   pedidoOrigem: string;
   descricao: string;
   status: string;
