@@ -205,7 +205,6 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
                     <FormItem>
                       <FormControl>
                         <Input
-                          type="password"
                           placeholder="Digite o nome do Morador"
                           {...field}
                         />
