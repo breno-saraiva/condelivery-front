@@ -18,14 +18,14 @@ function AdministradorWebPage() {
   const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
   const [openDialogExclude, setOpenDialogExclude] = useState(false);
   const [moradorSelected, setMoradorSelected] = useState<ListMoradores>({
-    _id: "",
+    id: "",
     nome: "",
     cpf: "",
     celular: "",
     email: "",
     data_nascimento: "",
     unidade: "",
-    eh_entregador: true,
+    ehEntregador: true,
     senha: "",
   });
   const [statusMorador, setStatusMorador] = useState(false);
@@ -45,18 +45,18 @@ function AdministradorWebPage() {
         setMoradorSelected((prev) => {
           return {
             ...prev,
-            _id: row._id,
+            id: row.id,
             nome: row.nome,
             cpf: row.cpf,
             celular: row.celular,
             email: row.email,
             data_nascimento: row.data_nascimento,
             unidade: row.unidade,
-            eh_entregador: row.eh_entregador,
+            ehEntregador: row.ehEntregador,
             senha: row.senha,
           };
         });
-        setStatusMorador(moradorSelected.eh_entregador);
+        setStatusMorador(moradorSelected.ehEntregador);
         setOpenDialogEditMorador(true);
       },
     },
@@ -67,14 +67,14 @@ function AdministradorWebPage() {
         setMoradorSelected((prev) => {
           return {
             ...prev,
-            _id: row._id,
+            id: row.id,
             nome: row.nome,
             cpf: row.cpf,
             celular: row.celular,
             email: row.email,
             data_nascimento: row.data_nascimento,
             unidade: row.unidade,
-            eh_entregador: row.eh_entregador,
+            ehEntregador: row.ehEntregador,
             senha: row.senha,
           };
         });

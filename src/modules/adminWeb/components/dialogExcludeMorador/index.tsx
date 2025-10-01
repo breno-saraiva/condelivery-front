@@ -23,9 +23,9 @@ const DialogExcludeMorador = ({
   moradorSelected,
   setOpenDialogExclude,
 }: DiaLogProp) => {
-  async function DeleteMorador(_id: string) {
+  async function DeleteMorador(id: string) {
     try {
-      await deleteMoradoresService.execute(_id);
+      await deleteMoradoresService.execute(id);
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +56,7 @@ const DialogExcludeMorador = ({
             </DialogClose>
             <Button
               type="button"
-              onClick={() => DeleteMorador(moradorSelected._id)}
+              onClick={() => DeleteMorador(moradorSelected.id)}
               variant="destructive"
             >
               Confirmar

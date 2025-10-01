@@ -1,5 +1,4 @@
 type EditMoradoresInput = {
-  _id: string;
   nome: string;
   cpf: string;
   celular: string;

@@ -38,6 +38,8 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
   const [statusMorador, setStatusMorador] = useState(false);
 
   async function onSubmit(data: z.infer<typeof createFormSchemaMorador>) {
+    const id_usua = String(localStorage.getItem("@id_usua"));
+
     const params = {
       nome: data.nome,
       cpf: data.cpf,
@@ -49,7 +51,7 @@ const DialogAddMorador = ({ isOpen, onCLose }: DiaLogProp) => {
       senha: data.senha,
     };
     try {
-      await createMorador.execute(params);
+      await createMorador.execute(params, id_usua);
       window.alert("cadastro realizado");
     } catch (error) {
       console.log(error);

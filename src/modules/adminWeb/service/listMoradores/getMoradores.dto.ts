@@ -1,12 +1,12 @@
 type ListMoradores = {
-  _id: string;
+  id: string;
   nome: string;
   cpf: string;
   celular: string;
   email: string;
-  data_nascimento: string;
+  dataNascimento: string;
   unidade: string;
-  eh_entregador: true;
+  ehEntregador: true;
   senha: string;
 };
 

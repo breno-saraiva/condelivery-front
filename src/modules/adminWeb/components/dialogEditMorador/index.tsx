@@ -44,9 +44,10 @@ const DialogEditMorador = ({
     defaultValues: defaultValueEditMorador,
   });
 
+  console.log(moradorSelected);
+
   async function onSubmit(data: z.infer<typeof editFormSchemaMorador>) {
     const params = {
-      _id: moradorSelected._id,
       nome: data.nome,
       cpf: data.cpf,
       celular: data.celular,
@@ -57,7 +58,7 @@ const DialogEditMorador = ({
       senha: data.senha,
     };
     try {
-      await editMoradoresService.execute(params);
+      await editMoradoresService.execute(params, moradorSelected.id);
     } catch (error) {
       console.log(error);
     }
