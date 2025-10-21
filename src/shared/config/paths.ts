@@ -1,6 +1,6 @@
 const pathBuilder = (mode: string) => {
-  const production = "http://localhost:8080/";
-  const development = "http://localhost:8080/";
+  const production = "https://condelivery-api.vercel.app/";
+  const development = "https://condelivery-api.vercel.app/";
 
   return mode === "production" ? production : development;
 };
