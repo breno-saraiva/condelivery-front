@@ -6,7 +6,6 @@ type EditMoradoresInput = {
   dataNascimento: string;
   unidade: string;
   ehEntregador: boolean;
-  senha: string;
 };
 
 export type { EditMoradoresInput };

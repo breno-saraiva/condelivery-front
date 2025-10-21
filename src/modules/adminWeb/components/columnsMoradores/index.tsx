@@ -1,10 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/components/ui/badge";
-import { ListMoradores } from "../../service/listMoradores/getMoradores.dto";
+import { ListMoradoresOutput } from "../../service/listMoradores/getMoradores.dto";
 import dayjs from "dayjs";
 
-const columnsMoradores: ColumnDef<ListMoradores>[] = [
+const columnsMoradores: ColumnDef<ListMoradoresOutput>[] = [
   {
     accessorKey: "nome",
     header: "Nome",

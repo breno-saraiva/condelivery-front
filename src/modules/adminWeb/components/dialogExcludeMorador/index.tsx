@@ -8,12 +8,12 @@ import {
   DialogTitle,
 } from "@/shared/components/ui/dialog";
 import { deleteMoradoresService } from "../../service/deleteMorador/deleteMorador.service";
-import { ListMoradores } from "../../service/listMoradores/getMoradores.dto";
+import { ListMoradoresOutput } from "../../service/listMoradores/getMoradores.dto";
 
 type DiaLogProp = {
   isOpen: boolean;
   onCLose: () => void;
-  moradorSelected: ListMoradores;
+  moradorSelected: ListMoradoresOutput;
   setOpenDialogExclude: React.Dispatch<React.SetStateAction<boolean>>;
 };
 

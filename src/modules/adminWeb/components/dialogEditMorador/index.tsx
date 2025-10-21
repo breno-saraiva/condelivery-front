@@ -18,7 +18,7 @@ import {
 import { Label } from "@/shared/components/ui/label";
 import { Input } from "@/shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
-import { ListMoradores } from "../../service/listMoradores/getMoradores.dto";
+import { ListMoradoresOutput } from "../../service/listMoradores/getMoradores.dto";
 import { Switch } from "@/shared/components/ui/switch";
 import { editFormSchemaMorador } from "../../schema/editMoradorFormSchema";
 import { defaultValueEditMorador } from "../../mocks/defaultValueEditFormMorador";
@@ -27,7 +27,7 @@ import { editMoradoresService } from "../../service/editMorador/editMorador.serv
 type DiaLogProp = {
   isOpen: boolean;
   onCLose: () => void;
-  moradorSelected: ListMoradores;
+  moradorSelected: ListMoradoresOutput;
   statusMorador: boolean;
   setStatusMorador: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -55,7 +55,6 @@ const DialogEditMorador = ({
         : moradorSelected.dataNascimento,
       unidade: data.unidade ? data.unidade : moradorSelected.unidade,
       ehEntregador: statusMorador,
-      senha: data.senha ? data.senha : moradorSelected.senha,
     };
     try {
       await editMoradoresService.execute(params, moradorSelected.id);
