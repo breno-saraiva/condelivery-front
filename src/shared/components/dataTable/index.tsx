@@ -158,11 +158,13 @@ export function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <div className="flex flex-col justify-center items-end font-semibold h-96 bg-white">
-                  <h1 className="w-1/3 font-bold text-[#F48C06]">
-                    Nenhum Dado foi encontrado
-                  </h1>
-                </div>
+                <TableCell colSpan={columns.length + 1}>
+                  <div className="flex justify-center items-start font-semibold h-96 bg-white">
+                    <h1 className="font-bold text-[#F48C06]">
+                      Nenhum Dado foi encontrado
+                    </h1>
+                  </div>
+                </TableCell>
               </TableRow>
             )}
           </TableBody>
