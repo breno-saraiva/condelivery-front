@@ -1,20 +1,20 @@
 type PedidosMorador = {
-  _id: string;
+  id: string;
   plataforma: string;
   descricao: string;
-  previsao_chegada: string;
-  local_entrega: string;
+  previsaoChegada: string;
+  localEntrega: string;
   status: string;
 };
 
 type ListPedidosMoradorOutput = {
-  _id: string;
+  id: string;
   nome: string;
   cpf: string;
   celular: string;
   email: string;
   unidade: string;
-  eh_entregador: string;
+  ehEntregador: string;
   senha: string;
   pedidos: PedidosMorador[];
 };

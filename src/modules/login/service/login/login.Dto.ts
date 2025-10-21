@@ -4,9 +4,11 @@ interface LoginInput {
 }
 
 interface LoginOutput {
-  id_usuario: string;
+  token: string;
+  id_usuario: number;
   tipo_usuario: string;
   nome_usuario: string;
+  email_usuario: string;
 }
 
 export type { LoginInput, LoginOutput };

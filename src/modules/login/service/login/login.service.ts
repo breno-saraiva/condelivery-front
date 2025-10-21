@@ -5,17 +5,22 @@ import { LoginInput, LoginOutput } from "./login.Dto";
 class LoginService {
   constructor(private readonly api: AxiosInstance) {}
 
-  async execute({ email, senha }: LoginInput): Promise<void> {
+  async execute({ email, senha }: LoginInput): Promise<LoginOutput> {
     const result = await this.api.post<LoginOutput>("/login", {
       email,
       senha,
     });
 
-    const { id_usuario, tipo_usuario, nome_usuario } = result.data;
+    const { tipo_usuario, nome_usuario, email_usuario, token, id_usuario } =
+      result.data;
 
-    localStorage.setItem("@id_usua", id_usuario);
+    localStorage.setItem("@id_usua", String(id_usuario));
     localStorage.setItem("@tipo_usua", tipo_usuario);
     localStorage.setItem("@nome_usua", nome_usuario);
+    localStorage.setItem("@email_usua", email_usuario);
+    localStorage.setItem("@token", token);
+
+    return result.data;
   }
 }
 

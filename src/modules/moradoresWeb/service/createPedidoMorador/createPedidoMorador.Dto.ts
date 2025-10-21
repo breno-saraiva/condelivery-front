@@ -1,8 +1,8 @@
 type CreatePedidoInput = {
   plataforma: string;
   descricao: string;
-  previsao_chegada: string;
-  local_entrega: string;
+  previsaoChegada: Date;
+  localEntrega: string;
 };
 
 export type { CreatePedidoInput };
