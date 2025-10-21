@@ -1,6 +1,7 @@
 import logo from "@/shared/assets/logo.svg";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import { DialogLogout } from "../dialogLogout";
 
 type Prop = {
   children: React.ReactNode;
@@ -14,14 +15,15 @@ function Layout({ children, usuario }: Prop) {
         <div>
           <img src={logo} alt="logomarca" />
         </div>
-        {usuario ? (
-          <div>
+        {usuario && (
+          <div className="flex justify-center items-center gap-2">
             <h1 className="text-white font-medium text-xl">
               Seja bem vindo, <span>{usuario}</span>
             </h1>
+            <div>
+              <DialogLogout />
+            </div>
           </div>
-        ) : (
-          ""
         )}
       </header>
       <main className="flex-1 bg-[#f5f5dc]">{children}</main>
