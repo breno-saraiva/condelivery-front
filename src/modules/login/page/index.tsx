@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { loginService } from "../service/login/login.service";
+import { useUserDataContext } from "@/shared/context/usercontext";
 
 function Login() {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -26,16 +27,18 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const { user } = useUserDataContext();
+
   async function onSubmit(data: z.infer<typeof loginSchema>) {
     try {
-      await loginService.execute(data);
-      console.log(localStorage.getItem("@tipo_usua"));
-      if (localStorage.getItem("@tipo_usua") === "condominio") {
+      const response = await loginService.execute(data);
+      if (response.tipo_usuario === "condominio") {
         navigate("/dashboard-adm");
       }
-      if (localStorage.getItem("@tipo_usua") === "morador") {
+      if (response.tipo_usuario === "morador") {
         navigate("/dashboard-morador");
       }
+      user.setValue(response);
     } catch (error) {
       console.log(error);
     }

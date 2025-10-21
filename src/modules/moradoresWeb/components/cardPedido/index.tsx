@@ -9,6 +9,7 @@ import {
 } from "@/shared/components/ui/card";
 import { DialogConfirmaçãoEntrega } from "../dialogConfirmação";
 import { useState } from "react";
+import dayjs from "dayjs";
 
 type CardProps = {
   cardID: string;
@@ -51,12 +52,12 @@ const CardPedidos = ({
               <h5 className="font-semibold">{descricao}</h5>
             </div>
             <div className="flex gap-1">
-              <h5 className="font-semibold">Status: </h5>
+              <h5 className="font-semibold text-xs">Status: </h5>
               <span>{status}</span>
             </div>
             <div className="flex gap-1">
               <h5 className="font-semibold">previsão de chegada:</h5>
-              <span>{previsaoChegada}</span>
+              <span>{dayjs(previsaoChegada).format("hh:mm:ss")}</span>
             </div>
             <div className="flex gap-2">
               <h5 className="font-semibold">Local de entrega:</h5>

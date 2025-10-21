@@ -44,18 +44,18 @@ const DialogEditMorador = ({
     defaultValues: defaultValueEditMorador,
   });
 
-  console.log(moradorSelected);
-
   async function onSubmit(data: z.infer<typeof editFormSchemaMorador>) {
     const params = {
-      nome: data.nome,
-      cpf: data.cpf,
-      celular: data.celular,
-      email: data.email,
-      data_nascimento: data.data_nascimento,
-      unidade: data.unidade,
-      eh_entregador: statusMorador,
-      senha: data.senha,
+      nome: data.nome ? data.nome : moradorSelected.nome,
+      cpf: data.cpf ? data.cpf : moradorSelected.cpf,
+      celular: data.celular ? data.celular : moradorSelected.celular,
+      email: data.email ? data.email : moradorSelected.email,
+      dataNascimento: data.dataNascimento
+        ? data.dataNascimento
+        : moradorSelected.dataNascimento,
+      unidade: data.unidade ? data.unidade : moradorSelected.unidade,
+      ehEntregador: statusMorador,
+      senha: data.senha ? data.senha : moradorSelected.senha,
     };
     try {
       await editMoradoresService.execute(params, moradorSelected.id);
@@ -166,14 +166,14 @@ const DialogEditMorador = ({
                 </div>
                 <FormField
                   control={form.control}
-                  name="data_nascimento"
+                  name="dataNascimento"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <Input
-                          placeholder={moradorSelected.data_nascimento}
+                          placeholder={moradorSelected.dataNascimento}
                           {...field}
-                          defaultValue={moradorSelected.data_nascimento}
+                          defaultValue={moradorSelected.dataNascimento}
                         />
                       </FormControl>
                       <FormMessage />
@@ -204,12 +204,17 @@ const DialogEditMorador = ({
               </div>
               <div className="col-span-3 flex justify-start items-center gap-4">
                 <Label>Status: </Label>
-                <div className="col-span-6">
+                <div className="col-span-6 flex items-center gap-2">
                   <Switch
                     className="data-[state=checked]:bg-[#F48C06] data-[state=unchecked]:bg-green-500"
                     checked={statusMorador}
                     onCheckedChange={(status) => setStatusMorador(status)}
                   />
+                  {!statusMorador ? (
+                    <p className="font-semibold text-sm">morador</p>
+                  ) : (
+                    <p>entregador</p>
+                  )}
                 </div>
               </div>
               <Button

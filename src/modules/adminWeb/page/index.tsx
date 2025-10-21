@@ -11,26 +11,30 @@ import { FaTrashAlt } from "react-icons/fa";
 import { DialogEditMorador } from "../components/dialogEditMorador";
 import { DialogExcludeMorador } from "../components/dialogExcludeMorador";
 import { getMoradoresService } from "../service/listMoradores/getMoradores.service";
-import { ListMoradores } from "../service/listMoradores/getMoradores.dto";
+import {
+  ListMoradoresInput,
+  ListMoradoresOutput,
+} from "../service/listMoradores/getMoradores.dto";
 
 function AdministradorWebPage() {
   const [openDialogAddMorador, setOpenDialogAddMorador] = useState(false);
   const [openDialogEditMorador, setOpenDialogEditMorador] = useState(false);
   const [openDialogExclude, setOpenDialogExclude] = useState(false);
-  const [moradorSelected, setMoradorSelected] = useState<ListMoradores>({
+  const [moradorSelected, setMoradorSelected] = useState<ListMoradoresOutput>({
+    condominioId: "",
     id: "",
     nome: "",
     cpf: "",
     celular: "",
     email: "",
-    data_nascimento: "",
+    dataNascimento: "",
     unidade: "",
     ehEntregador: true,
-    senha: "",
   });
   const [statusMorador, setStatusMorador] = useState(false);
+  const id_usua = String(localStorage.getItem("@id_usua"));
 
-  const [listMoradores, setListMoradores] = useState<ListMoradores[]>([]);
+  const [listMoradores, setListMoradores] = useState<ListMoradoresOutput[]>([]);
 
   const { handleNextPage, handlePreviousPage, handleSelectPerPage, pageInfo } =
     usePagination();
@@ -41,7 +45,7 @@ function AdministradorWebPage() {
     {
       label: "Editar Empresa",
       icon: <MdModeEdit />,
-      onClick: (row: ListMoradores) => {
+      onClick: (row: ListMoradoresOutput) => {
         setMoradorSelected((prev) => {
           return {
             ...prev,
@@ -50,10 +54,9 @@ function AdministradorWebPage() {
             cpf: row.cpf,
             celular: row.celular,
             email: row.email,
-            data_nascimento: row.data_nascimento,
+            data_nascimento: row.dataNascimento,
             unidade: row.unidade,
             ehEntregador: row.ehEntregador,
-            senha: row.senha,
           };
         });
         setStatusMorador(moradorSelected.ehEntregador);
@@ -63,7 +66,7 @@ function AdministradorWebPage() {
     {
       label: "Excluir Empresa",
       icon: <FaTrashAlt className="text-red-500" />,
-      onClick: (row: ListMoradores) => {
+      onClick: (row: ListMoradoresOutput) => {
         setMoradorSelected((prev) => {
           return {
             ...prev,
@@ -72,10 +75,9 @@ function AdministradorWebPage() {
             cpf: row.cpf,
             celular: row.celular,
             email: row.email,
-            data_nascimento: row.data_nascimento,
+            data_nascimento: row.dataNascimento,
             unidade: row.unidade,
             ehEntregador: row.ehEntregador,
-            senha: row.senha,
           };
         });
         setOpenDialogExclude(true);
@@ -85,8 +87,13 @@ function AdministradorWebPage() {
 
   async function getMoradores() {
     try {
-      const result = await getMoradoresService.execute();
-      setListMoradores(result.moradores);
+      if (id_usua) {
+        const params: ListMoradoresInput = {
+          condominioId: id_usua,
+        };
+        const result = await getMoradoresService.execute(params);
+        setListMoradores(result);
+      }
     } catch (error) {
       console.log(error);
     }

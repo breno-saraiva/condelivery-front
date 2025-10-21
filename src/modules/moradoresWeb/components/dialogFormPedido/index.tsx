@@ -38,17 +38,23 @@ const DialogFormPedido = ({
     defaultValues: defaultValueFormPedido,
   });
 
+  const id_usua = localStorage.getItem("@id_usua");
+
   async function onSubmit(data: z.infer<typeof createFormSchemaEmpresas>) {
     const params = {
       plataforma: data.plataforma,
       descricao: data.descricao,
-      previsao_chegada: data.previsao_chegada,
-      local_entrega: data.local_entrega,
+      previsaoChegada: new Date(
+        Date.now() + Number(data.previsao_chegada) * 60 * 1000
+      ),
+      localEntrega: data.local_entrega,
     };
     try {
-      await createPedidoMorador.execute(params);
-      setisOpenFormEntrega(false);
-      window.location.reload();
+      if (id_usua) {
+        await createPedidoMorador.execute(params, id_usua);
+        setisOpenFormEntrega(false);
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error);
     }

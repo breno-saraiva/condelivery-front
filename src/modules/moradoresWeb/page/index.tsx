@@ -18,16 +18,19 @@ function DashMoradores() {
   >([]);
 
   const nome_usua = String(localStorage.getItem("@nome_usua"));
+  const id_usua = String(localStorage.getItem("@id_usua"));
 
   async function loadPedidosMorador() {
     try {
-      const response = await getPedidosMoradoresService.execute();
-      response.pedidos.map((item) => {
-        if (item.status === "entregue") {
-          return setListPedidosEntregues((prev) => [...prev, item]);
-        }
-        return setListPedidosAndamento((prev) => [...prev, item]);
-      });
+      if (id_usua) {
+        const response = await getPedidosMoradoresService.execute(id_usua);
+        response.map((item) => {
+          if (item.status === "entregue") {
+            return setListPedidosEntregues((prev) => [...prev, item]);
+          }
+          return setListPedidosAndamento((prev) => [...prev, item]);
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,11 +49,12 @@ function DashMoradores() {
             <div className="flex w-max space-x-4 pb-4">
               {listPedidosAndamento.map((item) => (
                 <CardPedidos
-                  cardID={item._id}
+                  key={item.id}
+                  cardID={item.id}
                   descricao={item.descricao}
-                  localEntrega={item.local_entrega}
+                  localEntrega={item.localEntrega}
                   pedidoOrigem={item.plataforma}
-                  previsaoChegada={item.previsao_chegada}
+                  previsaoChegada={item.previsaoChegada}
                   status={item.status}
                 />
               ))}
@@ -71,11 +75,11 @@ function DashMoradores() {
             <div className="flex w-max space-x-4 pb-4">
               {listPedidosEntregues.map((item) => (
                 <CardFinalizado
-                  cardID={item._id}
+                  cardID={item.id}
                   descricao={item.descricao}
-                  localEntrega={item.local_entrega}
+                  localEntrega={item.localEntrega}
                   pedidoOrigem={item.plataforma}
-                  previsaoChegada={item.previsao_chegada}
+                  previsaoChegada={item.previsaoChegada}
                   status={item.status}
                 />
               ))}

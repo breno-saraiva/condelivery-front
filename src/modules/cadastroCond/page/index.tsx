@@ -27,18 +27,18 @@ function CadastroCondPage() {
     const params = {
       nome: data.nome,
       cnpj: data.cnpj,
+      cep: data.cep,
+      logradouro: data.logradouro,
+      numero: data.numero,
+      complemento: data.complemento,
       nome_adm: data.nome_adm,
       cpf_adm: data.cpf_adm,
       email_adm: data.email_adm,
       celular_adm: data.celular_adm,
       senha_adm: data.senha_adm,
       bairro: data.bairro,
-      cep: data.cep,
-      complemento: data.complemento,
       estado: data.estado,
-      logradouro: data.logradouro,
       municipio: data.municipio,
-      numero: data.numero,
     };
     try {
       await createCondominio.execute(params);

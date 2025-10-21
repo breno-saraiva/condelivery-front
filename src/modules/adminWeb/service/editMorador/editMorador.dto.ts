@@ -3,9 +3,9 @@ type EditMoradoresInput = {
   cpf: string;
   celular: string;
   email: string;
-  data_nascimento: string;
+  dataNascimento: string;
   unidade: string;
-  eh_entregador: boolean;
+  ehEntregador: boolean;
   senha: string;
 };
 

@@ -42,24 +42,24 @@ const CardFinalizado = ({
         <CardContent>
           <div className="-my-4 flex flex-col gap-2">
             <div>
-              <h5 className="font-semibold">{descricao}</h5>
+              <h5 className="font-semibold text-sm">{descricao}</h5>
             </div>
-            <div className="flex gap-1">
+            <div className="flex gap-1 text-sm">
               <h5 className="font-semibold">Status: </h5>
               <span>{status}</span>
             </div>
-            <div className="flex gap-1">
+            <div className="flex gap-1 text-sm">
               <h5 className="font-semibold">previsão de chegada:</h5>
               <span>{previsaoChegada}</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-sm">
               <h5 className="font-semibold">Local de entrega:</h5>
               <span>{localEntrega}</span>
             </div>
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <h3 className="text-xl font-medium text-green-400">
+          <h3 className="text-lg font-medium text-green-400">
             Pedido Finalizado
           </h3>
         </CardFooter>
